@@ -1,0 +1,168 @@
+<html class="no-js"><!--<![endif]--><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        
+        <title>Jupiter Toys</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles/main.css">
+
+    <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\:form{display:block;}</style></head>
+    <body ng-app="jupiterApp" class="ng-scope">
+
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
+        
+        <!--[if lt IE 9]>
+            <script src="scripts/vendor/es5-shim.min.js"></script>
+            <script src="scripts/vendor/json3.min.js"></script>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse" href="">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#"><img src="images/logo.png">Jupiter Toys</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="" id="nav-home"><a href="#/home"><i class="icon icon-home icon-white"></i>Home</a></li>
+              <li id="nav-shop" class=""><a href="#/shop"><i class="icon icon-barcode icon-white"></i>Shop</a></li>
+              <li id="nav-contact"><a href="#/contact"><i class="icon icon-envelope icon-white"></i>Contact</a></li>
+            </ul>
+            <ul class="nav pull-right ng-scope" ng-controller="NavCtrl">
+                    <li id="nav-login"><ng-login login-function="login"><a href=""><i class="icon icon-user icon-white"></i>Login</a></ng-login></li>
+                    <li id="nav-user"><a href="#/user"><i class="icon icon-user icon-white"></i><span class="user"></span></a></li>
+<li id="nav-logout"><a href="" ui-event="{'click':'logout()'}"><i class="icon icon-remove icon-white"></i> <span class="action">Logout</span></a></li>
+
+                
+              <li id="nav-cart" class="active"><a href="#/cart"><i class="icon icon-shopping-cart icon-white"></i>Cart (<span class="cart-count ng-binding">10</span>)</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+        <div class="container-fluid" ng-view=""><!-- uiIf: cart.getCount() > 0 --><div ui-if="cart.getCount() &gt; 0" class="ng-scope">
+	<p class="cart-msg">There <!-- uiIf: cart.getCount() != 1 --><span ui-if="cart.getCount() != 1" class="ng-scope">are</span><!-- uiIf: cart.getCount() == 1 --> <span class="cart-count ng-binding">10</span> <!-- uiIf: cart.getCount() != 1 --><span ui-if="cart.getCount() != 1" class="ng-scope">items</span><!-- uiIf: cart.getCount() == 1 --> in your cart, you can <!-- uiIf: form.$invalid --> <!-- uiIf: form.$valid --><a href="#/checkout/" ui-if="form.$valid" class="ng-scope">Checkout</a> or carry on <a href="#/shop/">Shopping</a>.</p>
+	<form name="form" novalidate="" class="ng-pristine ng-valid">
+	<table class="table table-striped cart-items">
+		<thead>
+			<tr>
+				<th>Item</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Subtotal</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody><!-- ngRepeat: item in cart.items() --><tr ng-repeat="item in cart.items()" class="cart-item ng-scope">
+			<td class="ng-binding"><img ng-src="images/src-embed/frog.jpg" width="50" src="images/src-embed/frog.jpg"> Stuffed Frog</td>
+			<td class="ng-binding">$10.99</td>
+			<td>
+				<input class="input-mini ng-pristine ng-valid ng-valid-number ng-valid-min" type="number" min="1" maxlength="1" value="2" ng-model="item.count" name="quantity" cartcount="" \="">
+			</td>
+			<td class="ng-binding">$21.98</td>
+			<td>
+				<ng-confirm title="Remove Item" action-text="Are you sure that you want to remove &lt;strong&gt;Stuffed Frog&lt;/strong&gt; from your cart?" action-button-text="Yes" action-function="removeItem(item)" cancel-button-text="No" cancel-function="cancel()">
+					<a class="remove-item btn btn-mini btn-danger" href=""><i class="icon-remove icon-white"></i></a>
+				</ng-confirm>
+			</td>
+		</tr><tr ng-repeat="item in cart.items()" class="cart-item ng-scope">
+			<td class="ng-binding"><img ng-src="images/src-embed/bunny.jpg" width="50" src="images/src-embed/bunny.jpg"> Fluffy Bunny</td>
+			<td class="ng-binding">$9.99</td>
+			<td>
+				<input class="input-mini ng-pristine ng-valid ng-valid-number ng-valid-min" type="number" min="1" maxlength="1" value="5" ng-model="item.count" name="quantity" cartcount="" \="">
+			</td>
+			<td class="ng-binding">$49.95</td>
+			<td>
+				<ng-confirm title="Remove Item" action-text="Are you sure that you want to remove &lt;strong&gt;Fluffy Bunny&lt;/strong&gt; from your cart?" action-button-text="Yes" action-function="removeItem(item)" cancel-button-text="No" cancel-function="cancel()">
+					<a class="remove-item btn btn-mini btn-danger" href=""><i class="icon-remove icon-white"></i></a>
+				</ng-confirm>
+			</td>
+		</tr><tr ng-repeat="item in cart.items()" class="cart-item ng-scope">
+			<td class="ng-binding"><img ng-src="images/src-embed/valentine.jpg" width="50" src="images/src-embed/valentine.jpg"> Valentine Bear</td>
+			<td class="ng-binding">$14.99</td>
+			<td>
+				<input class="input-mini ng-pristine ng-valid ng-valid-number ng-valid-min" type="number" min="1" maxlength="1" value="3" ng-model="item.count" name="quantity" cartcount="" \="">
+			</td>
+			<td class="ng-binding">$44.97</td>
+			<td>
+				<ng-confirm title="Remove Item" action-text="Are you sure that you want to remove &lt;strong&gt;Valentine Bear&lt;/strong&gt; from your cart?" action-button-text="Yes" action-function="removeItem(item)" cancel-button-text="No" cancel-function="cancel()">
+					<a class="remove-item btn btn-mini btn-danger" href=""><i class="icon-remove icon-white"></i></a>
+				</ng-confirm>
+			</td>
+		</tr>
+		</tbody><tfoot>
+			<tr>
+				<td colspan="5"><strong class="total ng-binding">Total: 116.9</strong></td>
+			</tr>
+			<tr>
+				<td colspan="5"><!-- uiIf: !form.$invalid --><a class="btn-checkout btn btn-success  ng-scope" href="#/checkout" ui-if="!form.$invalid">Check Out</a><!-- uiIf: form.$invalid --> <ng-confirm title="Empty Cart" action-text="Are you sure that you want to empty your cart?" action-button-text="Yes" action-function="empty()" cancel-button-text="No" cancel-function="cancel()">
+					<!-- uiIf: cart.getCount() > 0 --><a class="btn btn-danger ng-scope" href="" ui-if="cart.getCount() &gt; 0">Empty Cart</a>
+				</ng-confirm></td>
+			</tr>
+		</tfoot>
+	</table>
+	</form>
+</div><span class="ng-scope">
+</span><!-- uiIf: cart.getCount() == 0 --></div>
+        <hr>
+
+      <footer ng-controller="FooterCtrl" class="ng-scope">
+        <p class="muted ng-binding">© Jupiter Toys 2025</p>
+      </footer>
+        <script src="//ssl.google-analytics.com/ga.js"></script><script src="scripts/vendor/angular.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="scripts/vendor/jquery.min.js"><\/script>')</script>
+        <!-- build:js scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/services/catalog.js"></script>
+        <script src="scripts/services/popup.js"></script>
+        <script src="scripts/services/cart.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/shop.js"></script>
+        <script src="scripts/controllers/cart.js"></script>
+        <script src="scripts/controllers/contact.js"></script>
+        <script src="scripts/controllers/user.js"></script>
+        <script src="scripts/controllers/nav.js"></script>
+        
+        <script src="scripts/controllers/checkout.js"></script>
+        <!-- endbuild -->
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+
+        <!-- build:js scripts/plugins.js -->
+        <script src="scripts/vendor/bootstrap/bootstrap-affix.js"></script>
+        <script src="scripts/vendor/bootstrap/bootstrap-alert.js"></script>
+        <script src="scripts/vendor/bootstrap/bootstrap-dropdown.js"></script>
+        <script src="scripts/vendor/bootstrap/bootstrap-tooltip.js"></script>
+        <script src="scripts/vendor/bootstrap/bootstrap-modal.js"></script>
+        <script src="scripts/vendor/bootstrap/bootstrap-transition.js"></script>
+        <script src="scripts/vendor/bootstrap/bootstrap-button.js"></script>
+        <script src="scripts/vendor/bootstrap/bootstrap-popover.js"></script>
+        <script src="scripts/vendor/bootstrap/bootstrap-typeahead.js"></script>
+        <script src="scripts/vendor/bootstrap/bootstrap-carousel.js"></script>
+        <script src="scripts/vendor/bootstrap/bootstrap-scrollspy.js"></script>
+        <script src="scripts/vendor/bootstrap/bootstrap-collapse.js"></script>
+        <script src="scripts/vendor/bootstrap/bootstrap-tab.js"></script>
+       
+        <script src="components/jquery-ui/ui/minified/jquery.ui.effect.min.js"></script>
+        <script src="components/angular-ui/build/angular-ui.min.js"></script>
+        
+        <script src="scripts/controllers/footer.js"></script>
+        <!-- endbuild -->
+    
+    
+
+</body></html>
